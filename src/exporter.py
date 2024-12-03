@@ -137,41 +137,38 @@ def process_export(config: Dict[str, str], selected_key: str) -> None:
 
 def main() -> None:
     while True:
-        try:
-            available_keys = get_available_keys(EXPORT_SETTINGS_JSON_PATH)
-            selected_key_name = get_selected_key(available_keys)
+        available_keys = get_available_keys(EXPORT_SETTINGS_JSON_PATH)
+        selected_key_name = get_selected_key(available_keys)
 
-            start_time = time.time()
-            terminal_line()
+        start_time = time.time()
+        terminal_line()
 
-            validate_constants(
-                paths=[EXPORT_SETTINGS_JSON_PATH, EXPORT_FOLDER_PATH],
-                values=[USERNAME, PASSWORD, selected_key_name],
-            )
+        validate_constants(
+            paths=[EXPORT_SETTINGS_JSON_PATH, EXPORT_FOLDER_PATH],
+            values=[USERNAME, PASSWORD, selected_key_name],
+        )
 
-            required_keys = [
-                "key_name",
-                "encoding",
-                "quotechar",
-                "delimiter",
-                "contains_data",
-                "server_name",
-            ]
+        required_keys = [
+            "key_name",
+            "encoding",
+            "quotechar",
+            "delimiter",
+            "contains_data",
+            "server_name",
+        ]
 
-            config = load_configuration(
-                selected_key_name, EXPORT_SETTINGS_JSON_PATH, required_keys
-            )
-            if not config:
-                continue
+        config = load_configuration(
+            selected_key_name, EXPORT_SETTINGS_JSON_PATH, required_keys
+        )
+        if not config:
+            continue
 
-            process_export(config, selected_key_name)
+        process_export(config, selected_key_name)
 
-            execution_time(start_time)
+        execution_time(start_time)
 
-            if not should_continue("exportação"):
-                break
-        except Exception as e:
-            logger.error(f"Ocorreu um erro durante a execução: {e}")
+        if not should_continue("exportação"):
+            break
 
 
 if __name__ == "__main__":
