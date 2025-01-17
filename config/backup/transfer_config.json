@@ -1,0 +1,34 @@
+{
+    "1": {
+        "key_name": "ambev_crm",
+        "server_name": "192.168.0.21"
+    },
+    "2": {
+        "key_name": "bayer_crm",
+        "server_name": "192.168.0.14"
+    },
+    "3": {
+        "key_name": "grupo_padrao_crm",
+        "server_name": "192.168.0.14"
+    },
+    "4": {
+        "key_name": "hope_crm",
+        "server_name": "192.168.0.21"
+    },
+    "5": {
+        "key_name": "meio_mensagem_crm",
+        "server_name": "192.168.0.14"
+    },
+    "6": {
+        "key_name": "nb_urlshortener",
+        "server_name": "192.168.0.14"
+    },
+    "7": {
+        "key_name": "stanley_crm",
+        "server_name": "192.168.0.21"
+    },
+    "8": {
+        "key_name": "unilever_crm",
+        "server_name": "192.168.0.14"
+    }
+}

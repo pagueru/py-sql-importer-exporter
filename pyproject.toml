@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "py-sql-importer-exporter"
+version = "0.1.0"
+description = ""
+authors = ["Raphael Coelho <raphael.phael@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.3"
+pyodbc = "^5.2.0"
+chardet = "^5.2.0"
+python-dotenv = "^1.0.1"
+openpyxl = "^3.1.5"
+sqlalchemy = "^2.0.37"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

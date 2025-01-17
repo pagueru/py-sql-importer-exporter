@@ -1,0 +1,130 @@
+{
+    "1": {
+        "key_name": "Bayer",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "2": {
+        "key_name": "Botmaker-14",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "3": {
+        "key_name": "Botmaker-21",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.21"
+    },
+    "4": {
+        "key_name": "Braze",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.21"
+    },
+    "5": {
+        "key_name": "CBE",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.21"
+    },
+    "6": {
+        "key_name": "Formato_Google",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "7": {
+        "key_name": "Formato_Meta",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ";",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "8": {
+        "key_name": "HPE",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ";",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "9": {
+        "key_name": "Marketo",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "10": {
+        "key_name": "Meio_Mensagem",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "11": {
+        "key_name": "PerfectDraft",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.21"
+    },
+    "12": {
+        "key_name": "PerfectDraft_Semanal",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": true,
+        "server_name": "192.168.0.21"
+    },
+    "13": {
+        "key_name": "Teste",
+        "encoding": "utf-8-sig",
+        "quotechar": null,
+        "delimiter": ";",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "14": {
+        "key_name": "Zenvia-14",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ";",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    },
+    "15": {
+        "key_name": "Zenvia-21",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ";",
+        "contains_data": false,
+        "server_name": "192.168.0.21"
+    },
+    "16": {
+        "key_name": "emBlue",
+        "encoding": "UTF-8",
+        "quotechar": null,
+        "delimiter": ",",
+        "contains_data": false,
+        "server_name": "192.168.0.14"
+    }
+}

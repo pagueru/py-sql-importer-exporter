@@ -1,0 +1,5 @@
+--BASE_EMKT_ELEVA_DIPLOMA_CANUDO_20241216
+SELECT EMAIL AS [Email Address]
+	  ,AdAgency_ADDB.dbo.PrimeiroNome(NOME) AS [First Name]
+	  ,HASH_CLIENTE AS [Person Notes]
+  FROM Bayer_000_CRM..TB_BASE_DIPLOMAS

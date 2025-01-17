@@ -1,0 +1,74 @@
+{
+    "1": {
+        "key_name": "Ambev_CBE",
+        "path": "Z:\\Ambev\\006_CBE\\trafego\\recebidos\\",
+        "server_name": "192.168.0.21",
+        "database": "Ambev_001_DBM"
+    },
+    "2": {
+        "key_name": "Ambev_PerfectDraft",
+        "path": "Z:\\Ambev\\008_PerfectDraft\\trafego\\recebidos\\",
+        "server_name": "192.168.0.21",
+        "database": "Ambev_001_DBM"
+    },
+    "3": {
+        "key_name": "AutoService",
+        "path": "Z:\\AutoService\\000_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.21",
+        "database": "Auto_Service_001_DBM"
+    },
+    "4": {
+        "key_name": "Bayer",
+        "path": "Z:\\Bayer\\001_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Bayer_002_DBM"
+    },
+    "5": {
+        "key_name": "GrupoPadrao",
+        "path": "Z:\\GrupoPadrao\\000_crm\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Grupo_Padrao_001_DBM"
+    },
+    "6": {
+        "key_name": "Hpe",
+        "path": "Z:\\HpeAutos\\000_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Hpe_001_DBM"
+    },
+    "7": {
+        "key_name": "MeioMensagem",
+        "path": "Z:\\MeioMensagem\\000_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Meio_Mensagem_006_DBM"
+    },
+    "8": {
+        "key_name": "Stanley",
+        "path": "Z:\\Stanley\\000_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.21",
+        "database": "Stanley_001_DBM"
+    },
+    "9": {
+        "key_name": "Stock_Car",
+        "path": "Z:\\Stock_Car\\Stock_Car_000_CRM\\trafego\\recebidos\\",
+        "server_name": "192.168.0.21",
+        "database": "Stock_Car_001_DBM"
+    },
+    "10": {
+        "key_name": "Unilever_Argentina",
+        "path": "Z:\\Unilever\\002_Argentina\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Unilever_000_DBM"
+    },
+    "11": {
+        "key_name": "Unilever_Brasil",
+        "path": "Z:\\Unilever\\001_Brasil\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Unilever_000_DBM"
+    },
+    "12": {
+        "key_name": "Unilever_NOLA",
+        "path": "Z:\\Unilever\\003_NOLA\\trafego\\recebidos\\",
+        "server_name": "192.168.0.14",
+        "database": "Unilever_000_DBM"
+    }
+}
