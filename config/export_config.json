@@ -5,7 +5,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Bayer"
+        }
     },
     "2": {
         "key_name": "Botmaker-14",
@@ -13,7 +16,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Unilever_Brasil"
+        }
     },
     "3": {
         "key_name": "Botmaker-21",
@@ -21,7 +27,13 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "CBE",
+            "2": "Stanley",
+            "3": "Ze_Express",
+            "4": "Ze_Delivery"
+        }
     },
     "4": {
         "key_name": "Braze",
@@ -29,7 +41,12 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "CBE",
+            "2": "Ze_Express",
+            "3": "Ze_Delivery"
+        }
     },
     "5": {
         "key_name": "CBE",
@@ -37,7 +54,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "CBE"
+        }
     },
     "6": {
         "key_name": "Formato_Google",
@@ -45,7 +65,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Formato_Google"
+        }
     },
     "7": {
         "key_name": "Formato_Meta",
@@ -53,7 +76,10 @@
         "quotechar": null,
         "delimiter": ";",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Formato_Meta"
+        }
     },
     "8": {
         "key_name": "HPE",
@@ -61,7 +87,10 @@
         "quotechar": null,
         "delimiter": ";",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "HPE"
+        }
     },
     "9": {
         "key_name": "Marketo",
@@ -69,7 +98,11 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Unilever_Mexico",
+            "2": "Unilever_Argentina"
+        }
     },
     "10": {
         "key_name": "Meio_Mensagem",
@@ -77,7 +110,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Meio_Mensagem"
+        }
     },
     "11": {
         "key_name": "PerfectDraft",
@@ -85,7 +121,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "PerfectDraft"
+        }
     },
     "12": {
         "key_name": "PerfectDraft_Semanal",
@@ -93,7 +132,10 @@
         "quotechar": null,
         "delimiter": ",",
         "contains_data": true,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "PerfectDraft"
+        }
     },
     "13": {
         "key_name": "Teste",
@@ -101,7 +143,12 @@
         "quotechar": null,
         "delimiter": ";",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Teste_1",
+            "2": "Teste_2",
+            "3": "Teste_3"
+        }
     },
     "14": {
         "key_name": "Zenvia-14",
@@ -109,7 +156,10 @@
         "quotechar": null,
         "delimiter": ";",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Unilever_Brasil"
+        }
     },
     "15": {
         "key_name": "Zenvia-21",
@@ -117,14 +167,23 @@
         "quotechar": null,
         "delimiter": ";",
         "contains_data": false,
-        "server_name": "192.168.0.21"
+        "server_name": "192.168.0.21",
+        "client_name": {
+            "1": "CBE",
+            "2": "Stanley",
+            "3": "Ze_Express",
+            "4": "Ze_Delivery"
+        }
     },
     "16": {
-        "key_name": "emBlue",
+        "key_name": "Unilever_Argentina",
         "encoding": "UTF-8",
         "quotechar": null,
         "delimiter": ",",
         "contains_data": false,
-        "server_name": "192.168.0.14"
+        "server_name": "192.168.0.14",
+        "client_name": {
+            "1": "Unilever_Argentina"
+        }
     }
 }

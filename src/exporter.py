@@ -3,7 +3,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Union
+from typing import Any, Dict, Union
 
 import pandas as pd
 import pyodbc
@@ -24,7 +24,7 @@ from core.functions import (
     should_continue,
     validate_constants,
 )
-from src.core.utils import execution_time, logger, start_config, terminal_line
+from core.utils import execution_time, logger, start_config, terminal_line
 
 
 @dataclass
@@ -161,12 +161,13 @@ def export_dict_to_csv(
             raise
 
 
-def process_export(config: Dict[str, str]) -> None:
+def process_export(config: Dict[str, Union[str, Any]]) -> None:
     """
     Processa a exportação de dados para arquivos CSV com base em uma configuração.
 
     Args:
-        config (Dict[str, str]): Dicionário contendo as configurações da exportação.
+        config (Dict[str, Union[str, Dict[str, str]]]): Dicionário contendo as configurações
+        da exportação.
 
     Raises:
         RuntimeError: Para erros de configuração ou execução de exportação.
@@ -175,18 +176,34 @@ def process_export(config: Dict[str, str]) -> None:
         # Valida e extrai informações da configuração
         key_name = config.get("key_name")
         server_name = config.get("server_name")
+        client_names = config.get("client_name")
 
-        if not key_name or not server_name:
+        if not key_name or not server_name or not client_names:
             raise ValueError(
-                "Configuração inválida: 'key_name' ou 'server_name' está ausente."
+                "Configuração inválida: 'key_name', 'server_name' ou 'client_names' está ausente."
             )
+
+        # Verifica se o dicionário de nomes de cliente tem mais de uma chave
+        if len(client_names) > 1 and isinstance(client_names, dict):
+            print("Escolha um cliente para o nome da pasta:")
+            for num, name in client_names.items():
+                print(f"{num}. {name}")
+            client_choice = input(
+                "Digite o número do cliente (ou pressione Enter para usar o key_name): "
+            ).strip()
+            client_name = client_names.get(client_choice, key_name)
+        else:
+            if isinstance(client_names, dict):
+                client_name = next(iter(client_names.values()))
+            else:
+                client_name = client_names
 
         # Cria o objeto ExportConfig
         export_config = ExportConfig(
             output_path=str(
                 EXPORT_FOLDER_PATH / f'{datetime.now().strftime("%Y%m%d")}'
             ),
-            client_name=key_name,
+            client_name=client_name,
             encoding=config["encoding"],
             quotechar=config["quotechar"],
             delimiter=config["delimiter"],
@@ -249,6 +266,7 @@ def main() -> None:
                 "delimiter",
                 "contains_data",
                 "server_name",
+                "client_name",
             ]
 
             # Carrega a configuração baseada na chave selecionada

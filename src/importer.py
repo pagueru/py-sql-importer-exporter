@@ -27,7 +27,7 @@ from core.functions import (
     should_continue,
     validate_constants,
 )
-from src.core.utils import execution_time, logger, start_config, terminal_line
+from core.utils import execution_time, logger, start_config, terminal_line
 
 
 @dataclass
@@ -57,7 +57,7 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
         file.seek(0)
         try:
             dialect = csv.Sniffer().sniff(sample)
-            delimiter = dialect.delimiter
+            delimiter = ","
             if delimiter == "@":
                 delimiter = ","
             logger.info(f"Using delimiter: {delimiter}")
@@ -128,7 +128,7 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
     df_reader = pd.read_csv(
         filepath_or_buffer=import_config.file_path,
         encoding=encoding,
-        delimiter=delimiter,
+        delimiter=";",
         dtype=str,
         on_bad_lines="warn",
         engine="python",

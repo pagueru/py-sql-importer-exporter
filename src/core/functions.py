@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import pyodbc
 
-from src.core.utils import logger
+from core.utils import logger
 
 
 def get_connection(
@@ -137,7 +137,7 @@ def get_json_config(
         return config
     except (json.JSONDecodeError, FileNotFoundError, KeyError) as e:
         logger.error(f"Erro ao obter a configuração do JSON: {e}")
-        return None
+        raise
 
 
 def should_continue(action: str) -> bool:

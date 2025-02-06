@@ -60,7 +60,7 @@ def setup_logger(
 
 
 # Inicializa o logger global
-logger = setup_logger(log_file_path=LOG_FILE_PATH)
+logger = setup_logger(log_file_path=LOG_FILE_PATH, enable_file_log=True)
 
 
 def organize_json(file_path: FilePathStr) -> None:

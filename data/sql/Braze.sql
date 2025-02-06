@@ -1,5 +1,15 @@
---20250118-adhoc-newbacon-10off_em_corona_3_por_2
-SELECT DISTINCT
-	   CAST(HASH_SHA256 AS NVARCHAR(255)) AS external_id
-	  ,CAST(CLUSTER AS NVARCHAR(255)) AS cluster_newbacon
-  FROM ##ZEXPRESS_GERAL
+--20250207-wpp-newbacon-campanha_okr_casual
+SELECT CAST(CONCAT('55',TELEFONE) AS NVARCHAR(255)) AS phone
+      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
+	  ,EMAIL as email
+	  ,AdAgency_ADDB.dbo.fc_hash_sha256(EMAIL) AS external_id
+	  ,USERID AS [user_id]
+  FROM Ambev_001_DBM..TMP_BASE_WPP_CAMPANHA_OKR_CASUAL_20250205
+
+--20250207-wpp-newbacon-campanha_okr_ativo_sobrisco
+SELECT CAST(CONCAT('55',TELEFONE) AS NVARCHAR(255)) AS phone
+      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
+	  ,EMAIL as email
+	  ,AdAgency_ADDB.dbo.fc_hash_sha256(EMAIL) AS external_id
+	  ,USERID AS [user_id]
+  FROM Ambev_001_DBM..TMP_BASE_WPP_CAMPANHA_OKR_ATIVO_SOB_RISCO_20250205

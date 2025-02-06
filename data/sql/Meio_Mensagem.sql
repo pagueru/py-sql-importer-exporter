@@ -1,19 +1,19 @@
---20250122-webinar_janeiro-adhoc-base_assinante_profissional-newbacon
+--20250130-a_ideia_2-adhoc-base_assinante_profissional-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_1_128_20250115
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_2_20250127
  WHERE COMUNICACAO IN ('CIRCULO_PROFISSIONAL')
 
---20250122-webinar_janeiro-adhoc-bas_assinante_corporativo-newbacon
+--20250130-a_ideia_2-adhoc-base_assinante_corporativo-newbaconn
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_1_128_20250115
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_2_20250127
  WHERE COMUNICACAO IN ('CIRCULO_CORPORATIVO')
 
---20250122-webinar_janeiro-adhoc-base_assinante_lideranca-newbacon
+--20250130-a_ideia_2-adhoc-base_assinante_lideranca-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_1_128_20250115
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_2_20250127
  WHERE COMUNICACAO IN ('CIRCULO_LIDERANCA')
 
---20250122-webinar_janeiro-adhoc-base_free-newbacon
+--20250130-a_ideia_2-adhoc-base_free-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_1_128_20250115
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_A_IDEIA_2_20250127
  WHERE COMUNICACAO IN ('CIRCULO_FREE')

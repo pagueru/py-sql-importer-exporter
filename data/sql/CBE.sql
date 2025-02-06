@@ -1,13 +1,11 @@
---20250116-adhoc-newbacon-repique_feriado_rio_de_janeiro_clientes
-SELECT CAST(ISNULL(NULLIF(first_name,''),'Olá') AS NVARCHAR(255)) AS first_name,
-       CAST(external_id AS NVARCHAR(255)) AS external_id,
-	   CAST(email  AS NVARCHAR(255)) AS email
-  FROM Ambev_001_DBM..TMP_BASE_EMKT_FERIADO_RIO_DE_JANEIRO_20250116
- WHERE segment = '20250116-adhoc-newbacon-repique_feriado_rio_de_janeiro_clientes'
+--20250207-wpp-newbacon-campanha_okr_casual
+SELECT CAST(CONCAT('55',TELEFONE) AS NVARCHAR(255)) AS phone
+      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
+	  ,EMAIL as email
+  FROM Ambev_001_DBM..TMP_BASE_WPP_CAMPANHA_OKR_CASUAL_20250205
 
---20250116-adhoc-newbacon-repique_feriado_rio_de_janeiro_leads
-SELECT CAST(ISNULL(NULLIF(first_name,''),'Olá') AS NVARCHAR(255)) AS first_name,
-       CAST(external_id AS NVARCHAR(255)) AS external_id,
-	   CAST(email  AS NVARCHAR(255)) AS email
-  FROM Ambev_001_DBM..TMP_BASE_EMKT_FERIADO_RIO_DE_JANEIRO_20250116
- WHERE segment = '20250116-adhoc-newbacon-repique_feriado_rio_de_janeiro_leads'
+--20250207-wpp-newbacon-campanha_okr_ativo_sobrisco
+SELECT CAST(CONCAT('55',TELEFONE) AS NVARCHAR(255)) AS phone
+      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
+	  ,EMAIL as email
+  FROM Ambev_001_DBM..TMP_BASE_WPP_CAMPANHA_OKR_ATIVO_SOB_RISCO_20250205
