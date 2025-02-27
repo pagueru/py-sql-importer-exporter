@@ -41,37 +41,60 @@ class ImportConfig:
     batch_size: int = 1000
 
 
+def detect_delimiter(file_path: str, encoding: str) -> str:
+    """
+    Detecta o delimitador do CSV tentando diferentes separadores comuns.
+    Retorna o delimitador mais provável com base na distribuição de colunas.
+    """
+    common_delimiters = [
+        ",",
+        ";",
+        "\t",
+        "|",
+        " ",
+    ]  # Adiciona os delimitadores mais usados
+    best_delimiter = ","
+    max_columns = 0
+
+    with open(file_path, "r", encoding=encoding) as file:
+        sample = file.read(2048)  # Lê apenas um trecho para análise
+
+    for delimiter in common_delimiters:
+        df_test = pd.read_csv(
+            pd.io.common.StringIO(sample),
+            delimiter=delimiter,
+            nrows=5,
+            dtype=str,
+            engine="python",
+        )
+        num_columns = len(df_test.columns)
+
+        if num_columns > max_columns:
+            max_columns = num_columns
+            best_delimiter = delimiter
+
+    logger.info(f"Delimitador detectado: {best_delimiter}")
+    return best_delimiter
+
+
 def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
-    # Início do processamento do arquivo
     start_time = time.time()
 
     # Detectar o encoding do arquivo
     with open(import_config.file_path, "rb") as file:
-        result = chardet.detect(file.read())
+        result = chardet.detect(file.read(10000))  # Lê apenas uma parte para eficiência
         encoding: str = str(result["encoding"])
-        logger.info(f"Detected encoding: {encoding}")
+        logger.info(f"Detectando encoding: {encoding}")
 
-    # Detectar o delimitador do CSV
-    with open(import_config.file_path, "r", encoding=encoding) as file:
-        sample = file.read(2048)
-        file.seek(0)
-        try:
-            dialect = csv.Sniffer().sniff(sample)
-            delimiter = ","
-            if delimiter == "@":
-                delimiter = ","
-            logger.info(f"Using delimiter: {delimiter}")
-        except csv.Error:
-            logger.warning(
-                "Não foi possível determinar o delimitador. Usando vírgula como padrão."
-            )
-            delimiter = ","
+    # Detectar delimitador de forma confiável
+    delimiter = detect_delimiter(import_config.file_path, encoding)
 
-    # Gerar o nome da tabela caso não seja fornecido
-    if import_config.table_name is None:
-        table_name = Path(import_config.file_path).stem.replace(" ", "_")
-    else:
-        table_name = import_config.table_name
+    # Gerar nome da tabela
+    table_name = (
+        Path(import_config.file_path).stem.replace(" ", "_")
+        if not import_config.table_name
+        else import_config.table_name
+    )
 
     # Conectar ao banco de dados SQL Server
     cursor, conn = get_connection(
@@ -81,10 +104,9 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
         import_config.database,
     )
 
-    # Determinar número total de linhas no arquivo
+    # Determinar número total de linhas
     with open(import_config.file_path, "r", encoding=encoding) as file:
-        total_lines = sum(1 for line in file)
-
+        total_lines = sum(1 for _ in file)
     logger.info(f"Total de linhas no arquivo: {total_lines}")
 
     # Determinar comprimentos máximos de colunas
@@ -98,26 +120,20 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
         chunksize=import_config.batch_size,
     )
 
-    max_lengths = {}
+    max_lengths: Dict[str, int] = {}
     for chunk in df_reader:
-        chunk: pd.DataFrame = chunk.astype(str)  # Assegura strings
+        chunk = chunk.astype(str)  # Garante que os dados são strings
         for col in chunk.columns:
             max_len_in_chunk = chunk[col].map(len).max()
-            if col in max_lengths:
-                max_lengths[col] = max(max_lengths[col], max_len_in_chunk)
-            else:
-                max_lengths[col] = max_len_in_chunk
+            max_lengths[col] = max(max_lengths.get(col, 0), max_len_in_chunk)
 
-    # Criar a definição das colunas da tabela
-    column_definitions = []
-    for col, max_len in max_lengths.items():
-        if max_len < 255:
-            length = 255
-        else:
-            length = (max_len + 4) // 5 * 5  # Arredonda para múltiplos de 5
-        column_definitions.append(f"[{col}] NVARCHAR({length})")
+    # Criar definição das colunas da tabela
+    column_definitions = [
+        f"[{col}] NVARCHAR({(max_len + 4) // 5 * 5 if max_len >= 255 else 255})"
+        for col, max_len in max_lengths.items()
+    ]
 
-    # Criar a tabela no banco de dados
+    # Criar tabela no banco de dados
     create_table_sql = f'CREATE TABLE [{table_name}] ({", ".join(column_definitions)})'
     cursor.execute(f"DROP TABLE IF EXISTS [{table_name}]")
     cursor.execute(create_table_sql)
@@ -126,9 +142,9 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
 
     # Inserir os dados no banco
     df_reader = pd.read_csv(
-        filepath_or_buffer=import_config.file_path,
+        import_config.file_path,
         encoding=encoding,
-        delimiter=";",
+        delimiter=delimiter,
         dtype=str,
         on_bad_lines="warn",
         engine="python",
@@ -141,17 +157,14 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
                 logger.info(f"Chunk {chunk_index} está vazio. Pulando.")
                 continue
 
-            chunk = chunk.astype(str)
-            chunk = chunk.replace("nan", None).replace("", None)
-
+            chunk = chunk.astype(str).replace("nan", None).replace("", None)
             placeholders = ", ".join(["?"] * len(chunk.columns))
             insert_sql = f"INSERT INTO [{table_name}] VALUES ({placeholders})"
             cursor.fast_executemany = True
             cursor.executemany(insert_sql, chunk.values.tolist())
             conn.commit()
-            rows_in_chunk = len(chunk)
             logger.info(
-                f"Chunk {chunk_index}: {rows_in_chunk} linhas inseridas com sucesso."
+                f"Chunk {chunk_index}: {len(chunk)} linhas inseridas com sucesso."
             )
     except pyodbc.Error as e:
         logger.error(f"Erro ao criar a tabela ou inserir dados: {e}")
@@ -160,9 +173,7 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
         close_connection(cursor, conn)
 
     # Log de tempo de execução
-    end_time: float = time.time()
-    time_taken: float = end_time - start_time
-    logger.info(f"Tempo de execução: {time_taken:.2f} segundos")
+    logger.info(f"Tempo de execução: {time.time() - start_time:.2f} segundos")
     return table_name
 
 

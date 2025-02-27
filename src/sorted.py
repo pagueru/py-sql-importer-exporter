@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path
 
 from core.constants import EXPORT_FOLDER_PATH, PROJECT_PATH_NAME
-from src.core.utils import logger
+from core.utils import logger
 
 
 # Função para criar uma pasta se ela não existir
