@@ -18,7 +18,8 @@
         "contains_data": false,
         "server_name": "192.168.0.14",
         "client_name": {
-            "1": "Unilever_Brasil"
+            "1": "Unilever_Brasil",
+            "2": "Unilever_Trade"
         }
     },
     "3": {
@@ -45,7 +46,8 @@
         "client_name": {
             "1": "CBE",
             "2": "Ze_Express",
-            "3": "Ze_Delivery"
+            "3": "Ze_Delivery",
+            "4": "Bora_Ze"
         }
     },
     "5": {
@@ -154,7 +156,7 @@
         "key_name": "Zenvia-14",
         "encoding": "UTF-8",
         "quotechar": null,
-        "delimiter": ";",
+        "delimiter": ",",
         "contains_data": false,
         "server_name": "192.168.0.14",
         "client_name": {
