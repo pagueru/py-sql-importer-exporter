@@ -1,19 +1,19 @@
---20250312-podcast_podcasters4-adhoc-base_assinante_profissional-newbacon
+--20250331-podcast_aideia6-adhoc-base_assinante_profissional-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_PODCASTERS_4_20250311
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_A_IDEIA_6_20250328
  WHERE COMUNICACAO IN ('CIRCULO_PROFISSIONAL')
 
---20250312-podcast_podcasters4-adhoc-base_assinante_corporativo-newbacon
+--20250331-podcast_aideia6-adhoc-base_assinante_corporativo-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_PODCASTERS_4_20250311
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_A_IDEIA_6_20250328
  WHERE COMUNICACAO IN ('CIRCULO_CORPORATIVO')
 
---20250312-podcast_podcasters4-adhoc-base_assinante_lideranca-newbacon
+--20250331-podcast_aideia6-adhoc-base_assinante_lideranca-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_PODCASTERS_4_20250311
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_A_IDEIA_6_20250328
  WHERE COMUNICACAO IN ('CIRCULO_LIDERANCA')
 
---20250312-podcast_podcasters4-adhoc-base_free-newbacon
+--20250331-podcast_aideia6-adhoc-base_free-newbacon
 SELECT PRIMEIRO_NOME_CLIENTE AS NOME, EMAIL
-  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_PODCASTERS_4_20250311
+  FROM Meio_Mensagem_006_DBM..TMP_BASE_EMKT_PODCAST_A_IDEIA_6_20250328
  WHERE COMUNICACAO IN ('CIRCULO_FREE')

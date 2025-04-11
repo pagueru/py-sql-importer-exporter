@@ -1,41 +1,21 @@
---1-20250312-adhoc-sms_aniversario_recife-vd-portfolio
+--1-20250410-adhoc-sms_teaser_madrugada_stanley-vd-portfolio_NEWBACON
 SELECT CONCAT('55',TEL1) AS CELULAR,
        MENSAGEM AS MENSAGEM,
 	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250312-adhoc-sms_aniversario_recife-vd-portfolio'
+  FROM Stanley_001_DBM.dbo.TMP_BASE_SMS_TEASER_MADRUGADA_20250409
+ WHERE ORIGEM IN ('CONTROLE - NEWBACON','CONTROLE - STANLEY')
+   AND TEL1 IN ('18996698725','11974751312','11969219433')
 
---1-20250317-adhoc-sms_aniversario_aracaju-vd-portfolio
+--1-20250410-adhoc-sms_teaser_madrugada_stanley-vd-portfolio_CLIENTE
 SELECT CONCAT('55',TEL1) AS CELULAR,
        MENSAGEM AS MENSAGEM,
 	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250317-adhoc-sms_aniversario_aracaju-vd-portfolio'
+  FROM Stanley_001_DBM.dbo.TMP_BASE_SMS_TEASER_MADRUGADA_20250409
+ WHERE ORIGEM IN ('CONTROLE - NEWBACON','CONTROLE - STANLEY')
+   AND TEL1 IN ('18996698725','11974751312','11969219433','51985965162')
 
---1-20250323-adhoc-sms_aniversario_florianopolis-vd-portfolio
+--1-20250410-adhoc-sms_teaser_madrugada_stanley-vd-portfolio_FINAL
 SELECT CONCAT('55',TEL1) AS CELULAR,
        MENSAGEM AS MENSAGEM,
 	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250323-adhoc-sms_aniversario_florianopolis-vd-portfolio'
-
---1-20250326-adhoc-sms_aniversario_porto_alegre-vd-portfolio
-SELECT CONCAT('55',TEL1) AS CELULAR,
-       MENSAGEM AS MENSAGEM,
-	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250326-adhoc-sms_aniversario_porto_alegre-vd-portfolio'
-
---1-20250329-adhoc-sms_aniversario_salvador-vd-portfolio
-SELECT CONCAT('55',TEL1) AS CELULAR,
-       MENSAGEM AS MENSAGEM,
-	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250329-adhoc-sms_aniversario_salvador-vd-portfolio'
-
---1-20250329-adhoc-sms_aniversario_curitiba-vd-portfolio
-SELECT CONCAT('55',TEL1) AS CELULAR,
-       MENSAGEM AS MENSAGEM,
-	   REMETENTE
-  FROM Stanley_001_DBM..TMP_BASE_SMS_ANIVERSARIO_CAPITAIS_20250310
- WHERE UTM_CAMPAIGN = '20250329-adhoc-sms_aniversario_curitiba-vd-portfolio'
+  FROM Stanley_001_DBM.dbo.TMP_BASE_SMS_TEASER_MADRUGADA_20250409

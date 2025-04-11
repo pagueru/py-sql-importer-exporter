@@ -1,1 +1,5 @@
-
+--20250408-adhoc-newbacon-wpp_semana_do_consumidor_rei_do_feriado
+SELECT CAST(CONCAT('55',TEL1) AS NVARCHAR(255)) AS phone
+      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
+	  ,EMAIL as email
+  FROM Ambev_001_DBM..TMP_BASE_WHATS_SEMANA_DO_CONSUMIDOR_REI_DO_FERIADO_20250404

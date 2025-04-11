@@ -1,9 +1,9 @@
-import csv
 import os
 import shutil
 import time
 from dataclasses import dataclass
 from datetime import datetime
+from io import StringIO
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
@@ -47,31 +47,37 @@ def detect_delimiter(file_path: str, encoding: str) -> str:
     Retorna o delimitador mais provável com base na distribuição de colunas.
     """
     common_delimiters = [
-        ",",
         ";",
+        ",",
         "\t",
         "|",
         " ",
     ]  # Adiciona os delimitadores mais usados
-    best_delimiter = ","
+    best_delimiter = ";"
     max_columns = 0
 
     with open(file_path, "r", encoding=encoding) as file:
+        logger.info("Detectando delimitador...")
         sample = file.read(2048)  # Lê apenas um trecho para análise
 
     for delimiter in common_delimiters:
-        df_test = pd.read_csv(
-            pd.io.common.StringIO(sample),
-            delimiter=delimiter,
-            nrows=5,
-            dtype=str,
-            engine="python",
-        )
-        num_columns = len(df_test.columns)
+        try:
+            df_test = pd.read_csv(
+                StringIO(sample),
+                delimiter=delimiter,
+                nrows=5,
+                dtype=str,
+                engine="python",
+                quotechar='"',  # Considera aspas duplas como qualificador de texto
+                on_bad_lines="error",
+            )
+            num_columns = len(df_test.columns)
 
-        if num_columns > max_columns:
-            max_columns = num_columns
-            best_delimiter = delimiter
+            if num_columns > max_columns:
+                max_columns = num_columns
+                best_delimiter = delimiter
+        except Exception as e:
+            logger.warning(f"Erro ao tentar delimitador '{delimiter}': {e}")
 
     logger.info(f"Delimitador detectado: {best_delimiter}")
     return best_delimiter
@@ -115,7 +121,7 @@ def load_csv_to_sqlserver(import_config: ImportConfig) -> str:
         encoding=encoding,
         delimiter=delimiter,
         dtype=str,
-        on_bad_lines="warn",
+        on_bad_lines="error",
         engine="python",
         chunksize=import_config.batch_size,
     )
