@@ -1,0 +1,36 @@
+services:
+  mssqlserver:
+    container_name: mssqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: "no"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_PID: Evaluation
+    hostname: mssqlserver
+    ports:
+      - 1420:1433
+    volumes:
+      - mssql_data:/var/opt/mssql
+    networks:
+      - mssqlserver_cloudbeaver
+
+  cloudbeaver:
+    container_name: dbeaver
+    image: dbeaver/cloudbeaver:latest
+    ports:
+      - 8978:8978
+    volumes:
+      - cloudbeaver_data:/opt/cloudbeaver/workspace
+    networks:
+      - mssqlserver_cloudbeaver
+  
+volumes:
+  mssql_data:
+    driver: local
+  cloudbeaver_data:
+    driver: local
+
+networks:
+  mssqlserver_cloudbeaver:
+    driver: bridge

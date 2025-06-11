@@ -1,0 +1,110 @@
+[project]
+name = "py-sql-importer-exporter"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Raphael Coelho", email = "raphael.phael@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+
+dependencies = [
+    "PyYaml==6.0.1",
+    "pandas (>=2.2.3,<3.0.0)",
+    "pyodbc (>=5.2.0,<6.0.0)",
+    "chardet (>=5.2.0,<6.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "sqlalchemy (>=2.0.39,<3.0.0)",
+    "faker (>=37.0.2,<38.0.0)",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.11.0",
+    "pytest>=8.3.4",
+    "pre-commit>=4.0.1",
+    "pytest-cov>=6.0.0",
+    "black>=25.1.0",
+    "pre-commit>=4.2.0",
+]   
+
+[tool.ruff]
+lint.select = ["ALL"]    # Ativar todas as regras de linting, análise e estilo
+lint.unfixable = []      # Permitir todas as correções
+lint.isort.force-sort-within-sections = true # Forçar a ordenação dentro de seções
+lint.isort.combine-as-imports = true         # Permitir importações combinadas
+lint.ignore = [
+    "D203",              # Conflito com D211 (linha em branco antes da classe)
+    "D212",              # Conflito com D213 (resumo na primeira linha)
+    "COM812",            # Conflito com formatador (vírgula ausente)
+    "ISC001",            # Já corrigido pelo formatador (concatenação implícita)
+    "G004",              # Já corrigido pelo formatador (no-else-return)
+    "S101",              # Permite o uso de `assert`
+    "PERF401",           # Permite o uso de `for-loop` em vez de `list-comprehension`
+    "T201",              # Permite o uso de `print`
+    "ERA001",            # Permite o uso de comentários
+    "T203",              # Permite o uso de `pprint`
+    "ANN401",            # Permite o uso de `Any` em um `return`
+    "S105",              # Permite o uso de hardcoded password
+    "TRY003",            # Permite o uso de mensagens longas fora da classe de exceção
+    "RUF001",            # Permite o uso de caracteres unicode ambiguos ("–" e "-")
+
+    # REMOVER NO FINAL DO PROJETO
+    "D100",              # docstring
+    "D101",              # docstring
+    "D102",              # docstring
+    "D107",              # docstring
+    "D103",              # docstring
+    "D105",              
+
+    # Permissões para `TODO` e `FIXME` 
+    "TD001",             # Permite `TODO` sem descrição detalhada
+    "TD003",             # Permite `TODO` sem link para issue
+    "TD002",             # Permite `TODO` sem identificação do autor
+    "FIX001",            # Permite `FIXME` sem descrição detalhada
+    "FIX003",            # Permite `FIXME` sem link para issue
+    "FIX002",            # Permite `FIXME` sem ser tratado como erro crítico
+    "EM101",             # Permite o uso de string literal diretamente em exceções
+
+    # Remoções pontuais
+    "S608",
+    "F401",
+]
+fix = true               # Ativar correções automáticas
+line-length = 100        # Definir o comprimento da linha para 100 caracteres
+target-version = "py313" # Compatível com Python 3.13
+exclude = [
+    ".venv",
+    "__pycache__",
+]
+
+[tool.ruff.format]
+quote-style = "double"            # Usar aspas duplas (Black)
+indent-style = "space"            # Indentação com espaços (Black)
+skip-magic-trailing-comma = false # Manter vírgula mágica (Black)
+line-ending = "auto"              # Detectar o tipo de quebra de linha (Black)
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"             # Exigir docstrings ("numpy" ou "pep257")
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true           # Exigir anotações de tipo em __init__ e __new__
+suppress-none-returning = false   # Não suprimir erros de retorno None
+allow-star-arg-any = false        # Não permitir *args e **kwargs sem anotações de tipo
+
+[tool.pytest.ini_options]
+pythonpath = [".","src"]         # Adiciona o diretório atual ao PYTHONPATH
+
+# Adiciona opções padrão para o pytest
+addopts = [
+    "--junit-xml=tests/htmlcov/report.xml",     # Gera o relatório de teste em XML
+    "--no-cov-on-fail",                         # Desabilita a cobertura se os testes falharem
+    "--cov-report=term-missing:skip-covered",   # Mostra os arquivos com cobertura de código
+    "--cov-fail-under=80"                       # Falha se a cobertura de código for menor que 80%
+]
+
+[project.urls]
+repository = "https://github.com/pagueru/py-sql-importer-exporter"
+
+[tool.hatch.build.targets.wheel]
+packages = [".","src"]
