@@ -1,11 +1,11 @@
---NB_LEAD_MQL_20250408
+--NB_LEAD_MQL_20250611
 SELECT CAST(EMAIL AS NVARCHAR(1000)) AS EMAIL
 	  ,CAST(ISNULL(PRIMEIRO_NOME,'') COLLATE sql_latin1_general_cp1251_ci_as AS NVARCHAR(1000)) AS [NAME]
 	  ,CAST(HASH_CLIENTE AS NVARCHAR(1000)) AS HASH_CLIENTE
 	  ,CAST(fecha_creacion_lead AS DATE) AS fecha_creacion_lead
 	  ,CAST(fecha_creacion_db AS DATE) AS fecha_creacion_db
 	  ,CAST(ORIGEM AS NVARCHAR(1000)) AS origen_lead
-  FROM Unilever_002_Argentina..TB_LEADS_ARG_HIST
+  FROM Unilever_002_Argentina.dbo.TB_LEADS_ARG_HIST
  WHERE FG_OPTIN = 1
    AND FG_MQL = 1
    AND QA_EMAIL = 'VALIDO'

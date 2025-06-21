@@ -156,7 +156,7 @@
         "key_name": "Zenvia-14",
         "encoding": "UTF-8",
         "quotechar": null,
-        "delimiter": ",",
+        "delimiter": ";",
         "contains_data": false,
         "server_name": "192.168.0.14",
         "client_name": {

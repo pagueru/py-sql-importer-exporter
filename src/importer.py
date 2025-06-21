@@ -53,7 +53,7 @@ def detect_delimiter(file_path: str, encoding: str) -> str:
         "|",
         " ",
     ]  # Adiciona os delimitadores mais usados
-    best_delimiter = ";"
+    best_delimiter = ","
     max_columns = 0
 
     with open(file_path, "r", encoding=encoding) as file:
@@ -65,11 +65,12 @@ def detect_delimiter(file_path: str, encoding: str) -> str:
             df_test = pd.read_csv(
                 StringIO(sample),
                 delimiter=delimiter,
+                # delimiter=",",
                 nrows=5,
                 dtype=str,
                 engine="python",
                 quotechar='"',  # Considera aspas duplas como qualificador de texto
-                on_bad_lines="error",
+                on_bad_lines="skip",
             )
             num_columns = len(df_test.columns)
 

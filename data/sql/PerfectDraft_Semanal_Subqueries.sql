@@ -1,6 +1,9 @@
 --segmento_perfectdraft_tempo_recompra
-;WITH CTE_RECOMPRA AS
-(
+SELECT CAST(EMAIL  AS NVARCHAR(255)) AS email,
+       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
+       CAST(SEGMENTO AS NVARCHAR(255)) AS segmento_perfectdraft_recompra,
+       CAST(CLASS_TEMPO_REC AS NVARCHAR(255)) AS tempo_perfectdraft_recompra
+  FROM (
     SELECT A.EMAIL,
            A.TELEFONE,
            B.SEGMENTO,
@@ -12,17 +15,14 @@
      WHERE A.QA_EMAIL = 'VALIDO'
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
-)
-SELECT CAST(EMAIL  AS NVARCHAR(255)) AS email,
-       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
-       CAST(SEGMENTO AS NVARCHAR(255)) AS segmento_perfectdraft_recompra,
-       CAST(CLASS_TEMPO_REC AS NVARCHAR(255)) AS tempo_perfectdraft_recompra
-  FROM CTE_RECOMPRA
+  ) AS CTE_RECOMPRA
  WHERE DEDUP = 1
 
 --segmento_perfectdraft
-;WITH CTE_SEGMENTO AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
+       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
+       CAST(CLASSE_SEGMENTO AS NVARCHAR(255)) AS segmento_perfectdraft_v2
+  FROM (
     SELECT A.EMAIL,
            A.TELEFONE,
            B.CLASSE_SEGMENTO,
@@ -33,16 +33,14 @@ SELECT CAST(EMAIL  AS NVARCHAR(255)) AS email,
      WHERE A.QA_EMAIL = 'VALIDO'
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
-       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
-       CAST(CLASSE_SEGMENTO AS NVARCHAR(255)) AS segmento_perfectdraft_v2
-  FROM CTE_SEGMENTO
+  ) AS CTE_SEGMENTO
  WHERE DEDUP = 1
 
 --segmento_perfectdraft_compradores
-;WITH CTE_COMPRADORES AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
+       CONVERT(VARCHAR(50),DT_ULTIMO_PEDIDO,103) AS dt_ultimo_pedido,
+       CAST(SegmentoCompradores AS NVARCHAR(255)) AS SegmentoCompradores
+  FROM (
     SELECT CAST(A.EMAIL AS NVARCHAR(255)) AS email,
            CONVERT(VARCHAR(50),A.DT_ULTIMO_PEDIDO,103) AS dt_ultimo_pedido,
            CAST(CASE WHEN DATEDIFF(DAY,A.DT_ULTIMO_PEDIDO,GETDATE()) <= 30 THEN 'Compradores 30 dias' ELSE 'Clientes' END AS NVARCHAR(255)) AS SegmentoCompradores,
@@ -51,16 +49,14 @@ SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
      WHERE A.QA_EMAIL = 'VALIDO'
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
-       CONVERT(VARCHAR(50),DT_ULTIMO_PEDIDO,103) AS dt_ultimo_pedido,
-       CAST(SegmentoCompradores AS NVARCHAR(255)) AS SegmentoCompradores
-  FROM CTE_COMPRADORES
+  ) AS CTE_COMPRADORES
  WHERE DEDUP = 1
 
 --newsletter_perfectdraft
-;WITH CTE_NEWSLETTER AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
+       CAST(ORIGEM_CADASTRO AS NVARCHAR(255)) AS origem_cadastro,
+       CAST(optin_newsletter AS NVARCHAR(255)) AS optin_newsletter
+  FROM (
     SELECT DISTINCT
            A.EMAIL,
            CAST('NEWSLETTER PERFECTDRAFT' AS NVARCHAR(255)) AS ORIGEM_CADASTRO,
@@ -71,16 +67,14 @@ SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
        AND A.OPTIN_NEWSLETTER = 'True'
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
-       CAST(ORIGEM_CADASTRO AS NVARCHAR(255)) AS origem_cadastro,
-       CAST(optin_newsletter AS NVARCHAR(255)) AS optin_newsletter
-  FROM CTE_NEWSLETTER
+  ) AS CTE_NEWSLETTER
  WHERE DEDUP = 1
 
 --perfectdraft_udc_zedelivery
-;WITH CTE_ZE_DELIVERY AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
+       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
+       CAST(BAIRRO AS NVARCHAR(255)) AS bairro_ze_delivery
+  FROM (
     SELECT DISTINCT
            A.EMAIL,
            A.TELEFONE,
@@ -97,16 +91,16 @@ SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
      WHERE A.QA_EMAIL = 'VALIDO'
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
-       CAST(TELEFONE AS NVARCHAR(255)) AS telefone,
-       CAST(BAIRRO AS NVARCHAR(255)) AS bairro_ze_delivery
-  FROM CTE_ZE_DELIVERY
+  ) AS CTE_ZE_DELIVERY
  WHERE DEDUP = 1
 
 --perfectdraft_leads_aniversario
-;WITH CTE_NIVER AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
+       CAST(DT_NASCIMENTO AS NVARCHAR(255)) AS [data de nascimento],
+       CAST(HASH_CLIENTE AS NVARCHAR(255)) AS hash_cliente,
+       CAST(OPTIN_NEWSLETTER AS NVARCHAR(255)) AS optin_newsletter,
+       CAST('True' AS NVARCHAR(255)) AS lead_perfectdraft
+  FROM (
     SELECT DISTINCT
            A.EMAIL,
            AdAgency_ADDB.dbo.FC_HASH_MD5(A.EMAIL) AS HASH_CLIENTE,
@@ -125,18 +119,14 @@ SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
                           WHERE A.EMAIL = B.EMAIL
                             AND B.ORIGEM IN ('API VTEX - LOJA PRINCIPAL','API VTEX - MAIN')
                        )
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
-       CAST(DT_NASCIMENTO AS NVARCHAR(255)) AS [data de nascimento],
-       CAST(HASH_CLIENTE AS NVARCHAR(255)) AS hash_cliente,
-       CAST(OPTIN_NEWSLETTER AS NVARCHAR(255)) AS optin_newsletter,
-       CAST('True' AS NVARCHAR(255)) AS lead_perfectdraft
-  FROM CTE_NIVER
+  ) AS CTE_NIVER
  WHERE DEDUP = 1
 
 --perfectdraft_tipo_lead
-;WITH CTE_LEAD AS
-(
+SELECT CAST(EMAIL AS NVARCHAR(255)) as email,
+       CAST(HASH_CLIENTE AS NVARCHAR(255)) as hash_cliente,
+       CAST(tipo_lead AS NVARCHAR(255)) as tipo_lead
+  FROM (
     SELECT DISTINCT
            ISNULL(A.PRIMEIRO_NOME,'Olá') AS primeiro_nome,
            A.EMAIL,
@@ -152,9 +142,5 @@ SELECT CAST(EMAIL AS NVARCHAR(255)) AS email,
        AND A.QA_EMAIL = 'VALIDO'
        AND A.EMAIL NOT LIKE '%VTEX%'
        AND NULLIF(A.EMAIL,'') IS NOT NULL
-)
-SELECT CAST(EMAIL AS NVARCHAR(255)) as email,
-       CAST(HASH_CLIENTE AS NVARCHAR(255)) as hash_cliente,
-       CAST(tipo_lead AS NVARCHAR(255)) as tipo_lead
-  FROM CTE_LEAD
+  ) AS CTE_LEAD
 WHERE DEDUP = 1

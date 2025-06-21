@@ -30,7 +30,7 @@ pyright = "^1.1.392.post0"
 
 
 [tool.pyright]
-typeCheckingMode = "standard"
+typeCheckingMode = "off"
 extraPaths = ["src", "src/core"]
 
 [tool.mypy]

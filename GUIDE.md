@@ -16,3 +16,9 @@
 * [Unilever_Argentina.sql](data\sql\Unilever_Argentina.sql)  
 * [Zenvia-14.sql](data\sql\Zenvia-14.sql)  
 * [Zenvia-21.sql](data\sql\Zenvia-21.sql)
+
+## Executar Commit + Push
+
+```bash
+bash git-push.sh
+```

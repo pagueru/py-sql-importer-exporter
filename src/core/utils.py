@@ -123,4 +123,4 @@ def terminal_line(value: int = 79, char: str = "-") -> None:
 
 def execution_time(start_time: float) -> None:
     logger.info(f"Tempo de execução: {round(time.time() - start_time, 2)} segundos")
-    winsound.Beep(750, 300)
+    # winsound.Beep(750, 300)

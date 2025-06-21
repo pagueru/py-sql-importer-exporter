@@ -1,0 +1,25 @@
+{
+    "files.exclude": {
+        "*~$*": true,
+        "**.git": true,
+        "**.venv": true,
+        "**tools": true,
+        "**docs": true, 
+
+        "**/_dump*": true,
+        "**/_temp*": true,
+        "**/data/scripts": true,
+        "**/data/backups": true,
+        "**/log": true,
+        "**/config/backup":true,
+        "**/data/template":true,
+
+        
+        // Arquivos
+        ".gitignore": true,
+        ".python-version": true,
+        "poetry.lock": true, 
+        "pyproject.toml": true, 
+        "README.md": true, 
+    }
+}

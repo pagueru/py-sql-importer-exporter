@@ -1,5 +1,3 @@
---20250408-adhoc-newbacon-wpp_semana_do_consumidor_rei_do_feriado
-SELECT CAST(CONCAT('55',TEL1) AS NVARCHAR(255)) AS phone
-      ,CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS nome
-	  ,EMAIL as email
-  FROM Ambev_001_DBM..TMP_BASE_WHATS_SEMANA_DO_CONSUMIDOR_REI_DO_FERIADO_20250404
+--20250618-adhoc-newbacon-wpp_feriado_corpus
+SELECT AdAgency_ADDB.dbo.fc_hash_sha2_256(EMAIL) AS [external_id]
+  FROM Ambev_001_DBM.dbo.TMP_BASE_WHATS_FERIADO_CORPUS_20250618
