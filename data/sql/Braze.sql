@@ -1,7 +1,14 @@
---20250428-adhoc-newbacon-disparo_generation
-SELECT CAST(AdAgency_ADDB.DBO.fc_hash_sha256(EMAIL) AS NVARCHAR(255)) AS [external_id],
-	   CAST(EMAIL AS NVARCHAR(255)) AS [email],
-	   CAST(PRIMEIRO_NOME AS NVARCHAR(255)) AS [first_name],
-	   CAST('Bora Ze' AS NVARCHAR(255)) AS [origem],
-       CAST(HASH_CLIENTE AS NVARCHAR(255)) AS [hash_cliente]
-  FROM Ambev_001_DBM..TMP_BASE_EMKT_DISPARO_GENERATION_20250424
+--20250630-adhoc-newbacon-disparo_futebol_superlitragens_sleepers_churn
+SELECT CAST(external_id AS NVARCHAR(255)) AS external_id
+  FROM Ambev_001_DBM.dbo.TMP_BASE_EMKT_FUTEBOL_SUPERLITRAGEM_20250627
+ WHERE segment = '20250630-adhoc-newbacon-disparo_futebol_superlitragens_sleepers_churn'
+
+--20250630-adhoc-newbacon-disparo_futebol_superlitragens_ativos
+SELECT CAST(external_id AS NVARCHAR(255)) AS external_id
+  FROM Ambev_001_DBM.dbo.TMP_BASE_EMKT_FUTEBOL_SUPERLITRAGEM_20250627
+ WHERE segment = '20250630-adhoc-newbacon-disparo_futebol_superlitragens_ativos'
+
+--20250630-adhoc-newbacon-disparo_futebol_superlitragens_leads
+SELECT CAST(external_id AS NVARCHAR(255)) AS external_id
+  FROM Ambev_001_DBM.dbo.TMP_BASE_EMKT_FUTEBOL_SUPERLITRAGEM_20250627
+ WHERE segment = '20250630-adhoc-newbacon-disparo_futebol_superlitragens_leads'
