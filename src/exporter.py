@@ -201,7 +201,7 @@ def process_export(config: Dict[str, Union[str, Any]]) -> None:
         # Cria o objeto ExportConfig
         export_config = ExportConfig(
             output_path=str(
-                EXPORT_FOLDER_PATH / f'{datetime.now().strftime("%Y%m%d")}'
+                EXPORT_FOLDER_PATH / f"{datetime.now().strftime('%Y%m%d')}"
             ),
             client_name=client_name,
             encoding=config["encoding"],
